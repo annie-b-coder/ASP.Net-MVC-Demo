@@ -3,3 +3,4 @@ For testing new different features.
 
 - Custom AuthorizeAttribute
 
+- Custom Authorization
