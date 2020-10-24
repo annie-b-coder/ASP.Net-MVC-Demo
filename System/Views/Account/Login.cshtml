@@ -1,0 +1,41 @@
+﻿@model System.Models.Identity.LoginViewModel
+@{
+    ViewBag.Title = "Log In";
+    Layout = "~/Views/Shared/_AuthLayout.cshtml";
+}
+<div class="login-section k-header">
+   <h2>Welcome!</h2>
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    @using (Html.BeginForm("LogIn", "Account", FormMethod.Post))
+    {
+    <ul class="fieldlist">
+        @Html.AntiForgeryToken()
+        <li>
+            @(Html.TextBoxFor(x => x.UserName, new { placeholder = "Username", required = "required", validationmessage = "Enter {0}", style = "width:100%" }))
+
+        </li>
+
+        <li>
+            @Html.PasswordFor(x => x.Password, new { @placeholder = "Password", @style = "width:100%" })
+
+        </li>
+
+        <li>
+            <button type="submit">Login</button>
+        </li>
+
+    </ul>
+    }
+
+</div>
+
+
+
+
+
+
+
+
+
+
+

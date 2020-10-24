@@ -1,0 +1,63 @@
+﻿
+
+@{
+    ViewBag.Title = "Отчёты";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Reports</h2>
+
+<div class="form-inline">
+    <h3>Daily Reports:</h3>
+    <dl class="form-group sub">
+        <input id="daydatepicker" placeholder='Date' name="date" class="form-control" />
+        <select id="select_typeD" class="selectpicker form-control">
+            <option value="Equipment">Простои комбайнов</option>
+        </select>
+        <button id="DayRequestButton" value="Ок" class="btn btn-default">OK</button>
+    </dl>
+</div>
+
+<script>
+
+    function openInNewTab(url) {
+        var win = window.open(url, '_blank');
+        win.focus();
+    }
+
+    $(document).ready(function () {
+        var dd = new Date();
+
+        $('#daydatepicker').datepicker({
+            language: 'ru',
+            todayHighlight: true,
+            format: "dd-mm-yyyy",
+            startDate: "25-09-2019",
+            endDate: new Date()
+
+        });
+        $('#daydatepicker').datepicker('setDate', dd);
+
+        $('#DayRequestButton').click(
+            function () {
+                var sel = $("select#select_typeD").val();
+                $('#DayRequestButton').prop("disabled", true);
+
+                var d = $('#daydatepicker').datepicker('getDate');
+                var date = (d.getDate()) + "-" + (d.getMonth() + 1) + "-" + d.getFullYear();
+                var url = '/Report/' + sel + 'DataResult/?';
+                var paramUrl = url + 'startdate=' + date;
+                var newWin = window.open(paramUrl);
+                newWin.onunload = function () {
+                    $('#DayRequestButton').prop("disabled", false);
+
+                };
+                document.location.reload(true);
+            });
+    });
+</script>
+
+@section scripts {
+   
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
+
+}

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<System.Models.Identity.ViewUser>
+@{
+    ViewBag.Title = "Пользователи";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string roles = "";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            @Html.ActionLink("Новый пользователь", "User_Create", null, new { @class = "btn btn-default" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Login</th>
+                        <th>Company</th>
+                        <th>Access</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model)
+                    {
+                    <tr>
+                        <td>@user.FullName</td>
+                        <td>@user.UserName</td>
+                        <td></td>
+
+                        @foreach (var r in user.Roles)
+                            {
+                                roles += r;
+                                roles += ",";
+
+                            }
+                        <td>@roles</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-lg-8">
+
+        </div>
+    </div>
+</div>
+
