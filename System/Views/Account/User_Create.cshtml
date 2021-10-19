@@ -1,11 +1,9 @@
 ﻿@model System.Models.Identity.CreateUser
 @{
-     ViewBag.Title = "User_Edit";
+   
     Layout = "~/Views/Shared/_Layout.cshtml";
     IEnumerable<SelectListItem> Roles = ViewBag.Roles;
 }
-
-<h2>User_Create</h2>
 
 @using (Html.BeginForm("User_Create", "Account", FormMethod.Post))
 {
