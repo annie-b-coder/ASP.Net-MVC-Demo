@@ -31,19 +31,21 @@ namespace System.Controllers
 
         // GET: /Account/Login
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        public ActionResult Login()
         {
-            ViewBag.ReturnUrl = returnUrl;
-            return View();
+            return View(new LoginViewModel());
         }
-        [CustomAuthorize(Roles = "Admin")]
+
+        [AllowAnonymous]
+      //[CustomAuthorize(Roles = "Admin")]
         public ActionResult Roles()
         {
             var roles = repo.userRepo.GetRoles().Select(s => new ViewRole { Id = s.Id, Name = s.Name });
             return View(roles);
         }
         [HttpPost]
-        [CustomAuthorize(Roles = "Admin")]
+        [AllowAnonymous]
+     //CustomAuthorize(Roles = "Admin")]
         public ActionResult Role_Create(string roleName)
         {
             if (roleName != "")
