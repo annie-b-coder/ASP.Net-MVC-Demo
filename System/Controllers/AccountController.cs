@@ -21,11 +21,11 @@ namespace System.Controllers
 {
     public class AccountController : Controller
     {
-        AppRepository repo;
+        UserRepository repo;
 
         public AccountController()
         {
-            repo = new AppRepository();
+            repo = new UserRepository();
         }
 
 
@@ -40,7 +40,7 @@ namespace System.Controllers
         [CustomAuthorize(Roles = "Admin")]
         public ActionResult Roles()
         {
-            var roles = repo.userRepo.GetRoles().Select(s => new ViewRole { Id = s.Id, Name = s.Name });
+            var roles = repo.GetRoles().Select(s => new ViewRole { Id = s.Id, Name = s.Name });
             return View(roles);
         }
         [HttpPost]
@@ -50,10 +50,10 @@ namespace System.Controllers
         {
             if (roleName != "")
             {
-                DTORole n = repo.userRepo.GetRole(roleName);
+                DTORole n = repo.GetRole(roleName);
                 if (n == null)
                 {
-                    repo.userRepo.CreateRole(roleName);
+                    repo.CreateRole(roleName);
                 }
             }
             return RedirectToAction("Roles");
@@ -69,10 +69,10 @@ namespace System.Controllers
                 return View(model);
             }
 
-            var result = repo.userRepo.PasswordSignIn(model.UserName, model.Password);
+            var result = repo.PasswordSignIn(model.UserName, model.Password);
             if (result)
             {
-                DTOUser user = repo.userRepo.GetUser(model.UserName);
+                DTOUser user = repo.GetUser(model.UserName);
 
                 FormsAuthentication.SetAuthCookie(model.UserName, false);
 
@@ -106,7 +106,7 @@ namespace System.Controllers
         [CustomAuthorize(Roles = "Admin")]
         public ActionResult User_Create()
         {
-            List<DTORole> roles = repo.userRepo.GetRoles();
+            List<DTORole> roles = repo.GetRoles();
 
             ViewBag.Roles = roles.Select(x => new SelectListItem()
             {
@@ -127,20 +127,20 @@ namespace System.Controllers
             List<DTORole> roles = new List<DTORole>();
             foreach (var role in user.Roles)
             {
-                roles.Add(repo.userRepo.GetRole(role));
+                roles.Add(repo.GetRole(role));
             }
 
             if (ModelState.IsValid)
             {
 
-                DTOUser nUser = repo.userRepo.GetUser(user.UserName);
+                DTOUser nUser = repo.GetUser(user.UserName);
                 if (nUser != null)
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
                 try
                 {
-                    result = repo.userRepo.CreateUser(user, roles);
+                    result = repo.CreateUser(user, roles);
                 }
                 catch (Exception e)
                 {
@@ -164,7 +164,7 @@ namespace System.Controllers
         [CustomAuthorize(Roles = "Admin")]
         public async Task<ActionResult> Users()
         {
-            List<DTOUser> users = repo.userRepo.GetUsers();
+            List<DTOUser> users = repo.GetUsers();
 
             var viewUsers = users.Select(s => new ViewUser { Id = s.Id, UserName = s.UserName, Roles = s.Roles.Select(z => z.Name).ToList() });
             return View(viewUsers);

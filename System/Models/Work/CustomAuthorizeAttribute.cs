@@ -66,9 +66,8 @@ namespace System.Models.Work
 
         private bool IsInRole(string username, string role)
         {
-            AppRepository repo = new AppRepository();
-            //     var rolenamed = repo.userRepo.GetUserAsync(username).Result.Roles;
-            var rolename = repo.userRepo.GetUser(username).Roles.Select(z => z.Name).Contains(role);
+            UserRepository repo = new UserRepository();
+            var rolename = repo.GetUser(username).Roles.Select(z => z.Name).Contains(role);
 
             if (rolename) return true;
             else return false;

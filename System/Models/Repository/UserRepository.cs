@@ -10,11 +10,11 @@ namespace System.Models.Repository
 {
     public class UserRepository
     {
-        AppContext db;
+        private AppContext db = null;
 
-        public UserRepository(AppContext db)
+        public UserRepository()
         {
-            this.db = db;
+            db = new AppContext();
         }
 
         public List<DTORole> GetRoles()

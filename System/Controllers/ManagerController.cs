@@ -9,11 +9,11 @@ namespace System.Controllers
 {
     public class ManagerController : Controller
     {
-        AppRepository repo;
+        UserRepository repo;
        
         public ManagerController()
         {
-            repo = new AppRepository();
+            repo = new UserRepository();
         }
         // GET: Manager
         public ActionResult Index()

@@ -208,7 +208,6 @@
     <Compile Include="Models\Identity\User.cs" />
     <Compile Include="Models\Identity\ViewRole.cs" />
     <Compile Include="Models\Identity\ViewUser.cs" />
-    <Compile Include="Models\Repository\AppRepository.cs" />
     <Compile Include="Models\Repository\UserRepository.cs" />
     <Compile Include="Models\Work\CustomAuthorizeAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
