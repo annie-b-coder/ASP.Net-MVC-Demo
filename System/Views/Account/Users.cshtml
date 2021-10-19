@@ -27,12 +27,13 @@
                         <td>@user.UserName</td>
 
                         @foreach (var r in user.Roles)
-                            {
-                                roles += r;
-                                roles += ",";
+                        {
+                            roles += r;
+                            roles += ",";
 
-                            }
+                        }
                         <td>@roles</td>
+                        @{roles = "";}
                     </tr>
                     }
                 </tbody>

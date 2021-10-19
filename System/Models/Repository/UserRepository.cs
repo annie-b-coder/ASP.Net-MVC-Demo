@@ -194,6 +194,7 @@ namespace System.Models.Repository
             
         }
 
+        /* Проверка пароля */
         public bool PasswordSignIn(string username, string password)
         {
             User user = db.Users.FirstOrDefault(z => z.UserName == username);

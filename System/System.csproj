@@ -201,7 +201,7 @@
     <Compile Include="Models\AppContext.cs" />
     <Compile Include="Models\DTO\DTORole.cs" />
     <Compile Include="Models\DTO\DTOUser.cs" />
-    <Compile Include="Models\Identity\AccountModel.cs" />
+    <Compile Include="Models\Identity\LoginUser.cs" />
     <Compile Include="Models\Identity\CreateUser.cs" />
     <Compile Include="Models\Identity\Role.cs" />
     <Compile Include="Models\Identity\User.cs" />

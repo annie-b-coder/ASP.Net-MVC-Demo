@@ -8,7 +8,6 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using System.Models;
 using System.Models.Identity;
 using System.Models.Repository;
 using System.Web.Security;
@@ -21,7 +20,7 @@ namespace System.Controllers
 {
     public class AccountController : Controller
     {
-        UserRepository repo;
+        public UserRepository repo;
 
         public AccountController()
         {
@@ -33,7 +32,7 @@ namespace System.Controllers
         [AllowAnonymous]
         public ActionResult Login()
         {
-            return View(new LoginViewModel());
+            return View(new LoginUser());
         }
 
       
@@ -62,7 +61,7 @@ namespace System.Controllers
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult> Login(Models.Identity.LoginViewModel model, string returnUrl)
+        public ActionResult Login(Models.Identity.LoginUser model, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
@@ -162,7 +161,7 @@ namespace System.Controllers
         }
 
         [CustomAuthorize(Roles = "Admin")]
-        public async Task<ActionResult> Users()
+        public ActionResult Users()
         {
             List<DTOUser> users = repo.GetUsers();
 

@@ -6,7 +6,7 @@ using System.Web;
 
 namespace System.Models.Identity
 {
-    public class LoginViewModel
+    public class LoginUser
     {
         [Required]
         [Display(Name = "Имя пользователя")]
