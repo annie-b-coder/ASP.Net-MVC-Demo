@@ -203,7 +203,6 @@
     <Compile Include="Models\DTO\DTOUser.cs" />
     <Compile Include="Models\Identity\AccountModel.cs" />
     <Compile Include="Models\Identity\CreateUser.cs" />
-    <Compile Include="Models\Identity\EditUser.cs" />
     <Compile Include="Models\Identity\Role.cs" />
     <Compile Include="Models\Identity\User.cs" />
     <Compile Include="Models\Identity\ViewRole.cs" />
@@ -257,7 +256,6 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Account\User_Edit.cshtml" />
     <Content Include="Views\Account\User_Create.cshtml" />
     <Content Include="Views\Account\Users.cshtml" />
     <Content Include="Views\Account\Roles.cshtml" />
