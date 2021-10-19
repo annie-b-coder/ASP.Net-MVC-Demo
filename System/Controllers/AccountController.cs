@@ -36,16 +36,16 @@ namespace System.Controllers
             return View(new LoginViewModel());
         }
 
-        [AllowAnonymous]
-      //[CustomAuthorize(Roles = "Admin")]
+      
+        [CustomAuthorize(Roles = "Admin")]
         public ActionResult Roles()
         {
             var roles = repo.userRepo.GetRoles().Select(s => new ViewRole { Id = s.Id, Name = s.Name });
             return View(roles);
         }
         [HttpPost]
-        [AllowAnonymous]
-     //CustomAuthorize(Roles = "Admin")]
+      
+        [CustomAuthorize(Roles = "Admin")]
         public ActionResult Role_Create(string roleName)
         {
             if (roleName != "")
@@ -102,7 +102,7 @@ namespace System.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("LogIn", "Account");
         }
-
+        
         [CustomAuthorize(Roles = "Admin")]
         public ActionResult User_Create()
         {
