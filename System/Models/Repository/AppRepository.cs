@@ -16,8 +16,7 @@ namespace System.Models.Repository
             db = new AppContext();
         }
 
-        private UserRepository userRepository;
-        private DataRepository dataRepository;
+        private UserRepository userRepository;        
 
         public UserRepository userRepo
         {
@@ -27,15 +26,6 @@ namespace System.Models.Repository
                     userRepository = new UserRepository(db);
                 return userRepository;
             }
-        }
-        public DataRepository dataRepo
-        {
-            get
-            {
-                if (dataRepository == null)
-                    dataRepository = new DataRepository(db);
-                return dataRepository;
-            }
-        }
+        }       
     }
 }
